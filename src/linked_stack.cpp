@@ -6,18 +6,32 @@ namespace itis {
 
 void LinkedStack::Push(Element e) {
   // TODO: напишите здесь свой код ...
+  auto node = new SinglyNode(e, nullptr);
+  if (size_ == 0) {
+      top_ = node;
+  } else {
+      node -> next = top_;
+      top_ = node;
+  }
+  size_++;
 }
 
 void LinkedStack::Pop() {
   if (top_ == nullptr) {
     throw std::logic_error("cannot pop out from empty stack");
   }
-
   // TODO: напишите здесь свой код ...
+  auto node = top_;
+  top_ = top_ -> next;
+  size_--;
+  delete node;
 }
 
 void LinkedStack::Clear() {
   // TODO: напишите здесь свой код ...
+  for (int i = size_; i > 0; --i) {
+      Pop();
+  }
 }
 
 // === РЕАЛИЗОВАНО ===
